@@ -5,19 +5,24 @@ console.log("linked")
 var questionArray= [
 
 {question: "A stellate object has what shape?",
- answers: ["A: Spiral", "B: Star", "C: Conical", "D: Hexagon"]
+ answers: ["A: Spiral", "B: Star", "C: Conical", "D: Hexagon"],
+ correct: "B: Star",
 },{
 question: "What is a Vitrine?",
-answers: ["A: Fossilized log", "B: A type of vitamin", "C: A glass display cabinet", "D: A Norse women warrior"]
+answers: ["A: Fossilized log", "B: A type of vitamin", "C: A glass display cabinet", "D: A Norse women warrior"],
+correct: "C: A glass display cabinet",
 },{
 question: "What does Schmuck in German literally mean?", 
-answers: ["A: Jewellery", "B: A silly person","C: A surname", "D: A shoe"]
+answers: ["A: Jewellery", "B: A silly person","C: A surname", "D: A shoe"],
+correct: "A: Jewellery",
 },{
 question: "What is an aglet?",
-answers: ["A: The plastic tip on the end of your shoelace", "B: A type of rock", "C: A small silver coin", "D: An acute angle"]
+answers: ["A: The plastic tip on the end of your shoelace", "B: A type of rock", "C: A small silver coin", "D: An acute angle"],
+correct: "A: The plastic tip on the end of your shoelace",
 },{
-question: "What is a Zarf?"
-answers: "A: Bridge pillar", "B: A zebra calf", "C:A zebra's barf", "D: Coffee cup sleeve"]
+question: "What is a Zarf?",
+answers: ["A: Bridge pillar", "B: A zebra calf", "C: Zebra barf", "D: Coffee cup sleeve"],
+correct:"Coffee cup sleeve",
 }]
 
 

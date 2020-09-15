@@ -1,6 +1,19 @@
 body {
     background: salmon;
+    text-align: center;
 }
+
+button{
+    background-color: slateblue;
+    color:whitesmoke; 
+    border-radius: 15px;
+}
+#submitBtn {
+    background-color: slateblue;
+    color:whitesmoke; 
+    border-radius: 15px;
+}
+
 
 /* Background of buttons are purple and have hover effect */
 
