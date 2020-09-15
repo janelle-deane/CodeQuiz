@@ -1,18 +1,32 @@
+// At refreshing Start page is shown, everything else hidden
+
 // Timer
 var timer= document.querySelector("#timer"); 
 var secondsLeft= 60;
 
+// When you click start then the setTime function**
 setTime();
 
 function setTime(){
    var timerInterval = setInterval(function() {
    secondsLeft --; 
    timer.textContent="Time: " + secondsLeft + " seconds";
+  
+   if(secondsLeft === 0) {
+      clearInterval(timerInterval);
+      //When clock reaches 0 then go to score page** 
+    }
    }, 1000) 
 };
 
-
-
+// Make Question and Answer Function to propogate on page
+function generateQuestion(){   
+// creating the element
+   var ques = document.querySelector(quesHolder);
+   var myH2 = 
+   // Add content
+   ques.textContent =questionArray.question[0]
+}
 // Make Question Array
 var questionArray= [
 
@@ -37,6 +51,16 @@ answers: ["A: Bridge pillar", "B: A zebra calf", "C: Zebra barf", "D: Coffee cup
 correct:"Coffee cup sleeve",
 }]
 
+console.log(questionArray); 
+
+// Question Array propagated into page
+for (var i= 0; i<questionArray.length; i++){
+   var currentQuestion = questionArray[0].question[i];
+   generateQuestion(currentQuestion);
+}
+
+// Score Array
+var score =0;
 
 
 // Questions, your score and high score hidden
