@@ -1,4 +1,16 @@
-console.log("linked")
+// Timer
+var timer= document.querySelector("#timer"); 
+var secondsLeft= 60;
+
+setTime();
+
+function setTime(){
+   var timerInterval = setInterval(function() {
+   secondsLeft --; 
+   timer.textContent="Time: " + secondsLeft + " seconds";
+   }, 1000) 
+};
+
 
 
 // Make Question Array
