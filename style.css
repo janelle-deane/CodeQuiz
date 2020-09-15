@@ -3,22 +3,40 @@ body {
     text-align: center;
 }
 
+a {
+    color: slateblue;
+}
+
 button{
     background-color: slateblue;
     color:whitesmoke; 
-    border-radius: 15px;
+    border-radius: 10px;
+    border: turquoise;
 }
 #submitBtn {
     background-color: slateblue;
     color:whitesmoke; 
-    border-radius: 15px;
+    border-radius: 10px;
+    border: teal;
+}
+
+#cw{
+    color: slategrey;
+}
+/* hover effect over answers */
+button:hover{
+    background-color: teal;
+}
+
+#submitBtn:hover{
+    background-color: teal;
 }
 
 
-/* Background of buttons are purple and have hover effect */
+
 
 /* high score link is purple */
 
-/* all questions are bolded */
+
 
 /* Correct or Wrong are greyed out */

@@ -27,11 +27,16 @@ correct:"Coffee cup sleeve",
 
 
 
-// Questions are hidden 
-// Questions changes when clicked on a answer
-// Wrong or Correct are Shown when approirate response is choosen
+// Questions, your score and high score hidden
+// When start button is clicked, hide start page, show 1st question.
+// When answer is clicked, 
+// Wrong or Correct shows, potentially time deducted
+// Next Question is propagated
+
+
 // Initials are taken and then shown in a list of scores
 // Submit button
 // Go back button 
 // Clear High Scores 
 // Timer
+
