@@ -1,8 +1,32 @@
+
+// Define variables that will need to be used. 
+// Links and Buttons
+var highScoreLink= $("#highScoreLink");
+var startbtn = $("#startBtn");
+var btnA = $("#btnA");
+var btnB = $("#btnB");
+var btnC = $("#btnC");
+var btnD = $("#btnD");
+var submitBtn =$("#submitBtn");
+var timer= $("#timer"); 
+
+// Containers/Pages to be hidden or displayed
+var startingPage= $("#startingPage");
+var questionContainer= $("#questionContainer");
+var scorePage= $("#scorePage");
+var highPage =$("#highPage");
+
+// Score, Time, Index tracker
+var score=0; 
+var questionIndex=0;
+var secondsLeft= 60;
+
 // At refreshing Start page is shown, everything else hidden
 
+timer.css('display', 'none'); 
+
+
 // Timer
-var timer= document.querySelector("#timer"); 
-var secondsLeft= 60;
 
 // When you click start then the setTime function**
 setTime();
@@ -20,12 +44,11 @@ function setTime(){
 };
 
 // Make Question and Answer Function to propogate on page
-function generateQuestion(){   
-// creating the element
-   var ques = document.querySelector(quesHolder);
-   var myH2 = 
+function generateQuestion(index){   
+// connecting to premade element
+   var ques = document.querySelector("#quesHolder");
    // Add content
-   ques.textContent =questionArray.question[0]
+   ques.textContent =questionArray[index].question
 }
 // Make Question Array
 var questionArray= [
@@ -55,8 +78,8 @@ console.log(questionArray);
 
 // Question Array propagated into page
 for (var i= 0; i<questionArray.length; i++){
-   var currentQuestion = questionArray[0].question[i];
-   generateQuestion(currentQuestion);
+   // var currentQuestion = questionArray[0].question[i];
+   generateQuestion(i);
 }
 
 // Score Array
