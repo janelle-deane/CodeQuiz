@@ -8,6 +8,7 @@ var btnB = $("#btnB");
 var btnC = $("#btnC");
 var btnD = $("#btnD");
 var submitBtn =$("#submitBtn");
+var clearBtn= $("clearScores"); 
 var timer = $("#timer"); 
 var quesHolder =$("#quesHolder");
 var answerBtn=$(".answerBtn");
@@ -26,7 +27,6 @@ var score=0;
 var questionIndex=0;
 var secondsLeft= 60;
 
-// timer is now not displaying??**
 // At load Start page is shown, everything else hidden
 timerEl.css('display', 'none'); 
 questionContainer.css('display', 'none'); 
@@ -48,28 +48,30 @@ startBtn.on("click", function(){
 // Timer function
 function setTime(){
    var timerInterval = setInterval(function() {
-   secondsLeft --; 
-   timer.textContent="Time: " + secondsLeft + " seconds"; 
-    //When clock reaches 0 then go to score page**
-   if(secondsLeft === 0) {
-      clearInterval(timerInterval);
-      timer.css('display', 'none'); 
-      questionContainer.css('display', 'none');
-      scorePage.css('display', 'flex'); 
-    }
+      secondsLeft--; 
+      $("#timer").text("Time: " + secondsLeft + " seconds"); 
+      //When clock reaches 0 then go to score page**
+      if(secondsLeft <= 0 ||questionIndex>= questionArray.length ) {
+         clearInterval(timerInterval);
+         timer.css('display', 'none'); 
+         questionContainer.css('display', 'none');
+         scorePage.css('display', 'flex'); 
+      }
    }, 1000) 
 };
 
 // Make Question and Answer Function to propogate on page
 function generateQuestion() {
-   quesHolder.text(questionArray[questionIndex].question);
+   if(questionArray[questionIndex]) quesHolder.text(questionArray[questionIndex].question);
 }
 
-function generateAnswers(){
-   btnA.text(questionArray[questionIndex].answers[0]);
-   btnB.text(questionArray[questionIndex].answers[1]);
-   btnC.text(questionArray[questionIndex].answers[2]);
-   btnD.text(questionArray[questionIndex].answers[3]);
+function generateAnswers() {
+   if (questionArray[questionIndex]) {
+      btnA.text(questionArray[questionIndex].answers[0]);
+      btnB.text(questionArray[questionIndex].answers[1]);
+      btnC.text(questionArray[questionIndex].answers[2]);
+      btnD.text(questionArray[questionIndex].answers[3]);
+   }
 }
 
 // Make Question Array
@@ -101,28 +103,32 @@ correct:"Coffee cup sleeve",
 
 answerBtn.on("click", function(){
    console.log(answerBtn)
-   questionIndex ++; 
    questionContainer.css('display', 'flex'); 
    scorePage.css('display', 'none');
    highPage.css('display', 'none');
    
-   // if (clicked.value===questionArray.correct.value) function(){
-   //    score=score+5; 
-   //    cw.css('display', 'flex');
-   //    cw.text("Correct!")
-   // }else{
-   //    secondsLeft=secondsLeft-10; 
-   //    cw.css('display', 'flex');
-   //    cw.text("Wrong!")
-   // }
-   generateQuestion();
-   generateAnswers();
+   // Add score or substract time
+   if (this.innerText === questionArray[questionIndex].correct) {
+      score += 5; 
+      cw.css('display', 'flex');
+      cw.text("Correct!")
+   }else{
+      secondsLeft -= 10; 
+      cw.css('display', 'flex');
+      cw.text("Wrong!")
+   }
    
-   // // after all of the questions it moves to the 
-   // if(questionIndex===4) function(){
-   //    questionContainer.css('display', 'none'); 
-   //    scorePage.css('display', 'flex');
-   // }
+   questionIndex++; 
+   // // after all of the questions it moves to the score page
+   if(questionIndex === questionArray.length) {
+      questionContainer.css('display', 'none'); 
+      scorePage.css('display', 'flex');
+   }
+// Allow a slight delay to have correct/wrong to show
+   setTimeout(function () {
+      generateQuestion();
+      generateAnswers();
+   }, 1000)
 
 })
  
@@ -136,7 +142,7 @@ var storedScores = localStorage.getItem('scores');
    }
    
    storedScores.forEach(score => {
-       scoresList.append(`<li> ${score.userInits} -- ${score.userScore}`)
+       $("#scoreList").append(`<li> ${score.userInits} -- ${score.userScore}`)
    })
 
 // Initials are taken and then shown in a list of scores
@@ -145,22 +151,28 @@ submitBtn.on("click", function(event){
    console.log(userInits.val());
    console.log(score)
    var userObj = {
-      userInits: userInits,
+      userInits: userInits.val(),
       userScore: score
   }; 
 
   storedScores.push(userObj);
 
    localStorage.setItem('scores', JSON.stringify(storedScores))
-   $("#scoreList").text(storedScores)
+   
+   storedScores.forEach(score => {
+       $("#scoreList").append(`<li> ${score.userInits} -- ${score.userScore}`)
+   })
 
    scorePage.css('display', 'none');
    highPage.css('display', 'flex');
 })
 
+// Clear High Scores 
+clearBtn
 
-//
+
+//Link to HighScores
 
 // Go back button 
-// Clear High Scores 
+
 
