@@ -2,13 +2,13 @@
 // Define variables that will need to be used. 
 // Links and Buttons
 var highScoreLink= $("#highScoreLink");
-var startbtn = $("#startBtn");
+var startBtn = $("#startBtn");
 var btnA = $("#btnA");
 var btnB = $("#btnB");
 var btnC = $("#btnC");
 var btnD = $("#btnD");
 var submitBtn =$("#submitBtn");
-var timer= $("#timer"); 
+var timer = $("#timer"); 
 
 // Containers/Pages to be hidden or displayed
 var startingPage= $("#startingPage");
@@ -19,6 +19,7 @@ var highPage =$("#highPage");
 // Score, Time, Index tracker
 var score=0; 
 var questionIndex=0;
+var answerIndex=0;
 var secondsLeft= 60;
 
 // At load Start page is shown, everything else hidden
@@ -27,19 +28,25 @@ questionContainer.css('display', 'none');
 scorePage.css('display', 'none');
 highPage.css('display', 'none');
 
-// Timer
-
-// When you click start then the setTime function**
-setTime();
+// Once your click on the Start button, timer starts, start pages hides, question shows
+startBtn.on("click", function(){
+   timer.css('display','flex');
+   questionContainer.css('display', 'flex');
+   startingPage.css('display', 'none');
+   setTime();
+})
+// Timer function
 
 function setTime(){
    var timerInterval = setInterval(function() {
    secondsLeft --; 
-   timer.textContent="Time: " + secondsLeft + " seconds";
-  
+   timer.textContent="Time: " + secondsLeft + " seconds"; 
+    //When clock reaches 0 then go to score page**
    if(secondsLeft === 0) {
       clearInterval(timerInterval);
-      //When clock reaches 0 then go to score page** 
+      timer.css('display', 'none'); 
+      questionContainer.css('display', 'none');
+      scorePage.css('display', 'flex'); 
     }
    }, 1000) 
 };
