@@ -21,10 +21,11 @@ var score=0;
 var questionIndex=0;
 var secondsLeft= 60;
 
-// At refreshing Start page is shown, everything else hidden
-
+// At load Start page is shown, everything else hidden
 timer.css('display', 'none'); 
-
+questionContainer.css('display', 'none'); 
+scorePage.css('display', 'none');
+highPage.css('display', 'none');
 
 // Timer
 
