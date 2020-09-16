@@ -12,6 +12,7 @@ var timer = $("#timer");
 var quesHolder =$("#quesHolder");
 var answerBtn=$(".answerBtn");
 var cw= $('#cw');
+var userInits=$("#initials");
 
 // Containers/Pages to be hidden or displayed
 var startingPage= $("#startingPage");
@@ -116,38 +117,50 @@ answerBtn.on("click", function(){
    // }
    generateQuestion();
    generateAnswers();
+   
+   // // after all of the questions it moves to the 
+   // if(questionIndex===4) function(){
+   //    questionContainer.css('display', 'none'); 
+   //    scorePage.css('display', 'flex');
+   // }
 
 })
+ 
+// Storing initials in local storage
+var storedScores = localStorage.getItem('scores');
+   
+   if(storedScores){
+       storedScores = JSON.parse(storedScores);
+   } else {
+       storedScores = []
+   }
+   
+   storedScores.forEach(score => {
+       scoresList.append(`<li> ${score.userInits} -- ${score.userScore}`)
+   })
 
 // Initials are taken and then shown in a list of scores
-// Submit button
+submitBtn.on("click", function(event){
+   event.preventDefault();
+   console.log(userInits.val());
+   console.log(score)
+   var userObj = {
+      userInits: userInits,
+      userScore: score
+  }; 
+
+  storedScores.push(userObj);
+
+   localStorage.setItem('scores', JSON.stringify(storedScores))
+   $("#scoreList").text(storedScores)
+
+   scorePage.css('display', 'none');
+   highPage.css('display', 'flex');
+})
+
+
+//
 
 // Go back button 
 // Clear High Scores 
-// Timer
 
-
-// Storing initials in local storage
-// var storedScores = localStorage.getItem('scores');
-
-// if(storedScores){
-//     storedScores = JSON.parse(storedScores);
-// } else {
-//     storedScores = []
-// }
-
-// storedScores.forEach(score function() {
-//     scoresList.append(`<li> ${score.userInits} -- ${score.userScore}`)
-// })
-
-// function endGame(){
-//    var userInits = $("#initials").val()
-//    var userObj = {
-//        userInits: userInits,
-//        userScore: score
-//    }
-
-//    storedScores.push(userObj);
-
-//    localStorage.setItem('scores', JSON.stringify(storedScores))
-// $("#scoreList").text(storedScores)
