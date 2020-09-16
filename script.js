@@ -31,16 +31,17 @@ timerEl.css('display', 'none');
 questionContainer.css('display', 'none'); 
 scorePage.css('display', 'none');
 highPage.css('display', 'none');
-cw.css('display', 'none');
+
 
 // Once your click on the Start button, timer starts, start pages hides, question shows
 startBtn.on("click", function(){
    timerEl.css('display','flex');
    questionContainer.css('display', 'flex');
    startingPage.css('display', 'none');
+   cw.css('display', 'none');
    setTime();
    generateQuestion();
-   generateAnswers()
+   generateAnswers();
 });
 
 // Timer function
@@ -97,19 +98,56 @@ correct:"Coffee cup sleeve",
 
 // When answer is clicked, Wrong or Correct shows, potentially time deducted & Next Question is propagated
 
-// answerBtn.on("click", function(){
-//    questionIndex ++; 
-//    console.log("you clicked an answer!")
-//    if (===)
+answerBtn.on("click", function(){
+   console.log(answerBtn)
+   questionIndex ++; 
+   questionContainer.css('display', 'flex'); 
+   scorePage.css('display', 'none');
+   highPage.css('display', 'none');
+   
+   // if (clicked.value===questionArray.correct.value) function(){
+   //    score=score+5; 
+   //    cw.css('display', 'flex');
+   //    cw.text("Correct!")
+   // }else{
+   //    secondsLeft=secondsLeft-10; 
+   //    cw.css('display', 'flex');
+   //    cw.text("Wrong!")
+   // }
+   generateQuestion();
+   generateAnswers();
 
-
-//    // If answer is correct add 5 points; and display "correct"; else display wrong & minus secondsleft
-//    cw.css('display', 'flex');
-// })
+})
 
 // Initials are taken and then shown in a list of scores
 // Submit button
+
 // Go back button 
 // Clear High Scores 
 // Timer
 
+
+// Storing initials in local storage
+// var storedScores = localStorage.getItem('scores');
+
+// if(storedScores){
+//     storedScores = JSON.parse(storedScores);
+// } else {
+//     storedScores = []
+// }
+
+// storedScores.forEach(score function() {
+//     scoresList.append(`<li> ${score.userInits} -- ${score.userScore}`)
+// })
+
+// function endGame(){
+//    var userInits = $("#initials").val()
+//    var userObj = {
+//        userInits: userInits,
+//        userScore: score
+//    }
+
+//    storedScores.push(userObj);
+
+//    localStorage.setItem('scores', JSON.stringify(storedScores))
+// $("#scoreList").text(storedScores)
