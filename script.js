@@ -8,7 +8,8 @@ var btnB = $("#btnB");
 var btnC = $("#btnC");
 var btnD = $("#btnD");
 var submitBtn =$("#submitBtn");
-var clearBtn= $("clearScores"); 
+var clearBtn= $("#clearScores"); 
+var playBtn=$("#playAgain");
 var timer = $("#timer"); 
 var quesHolder =$("#quesHolder");
 var answerBtn=$(".answerBtn");
@@ -130,7 +131,7 @@ answerBtn.on("click", function(){
       generateAnswers();
    }, 1000)
 
-})
+}); 
  
 // Storing initials in local storage
 var storedScores = localStorage.getItem('scores');
@@ -165,14 +166,30 @@ submitBtn.on("click", function(event){
 
    scorePage.css('display', 'none');
    highPage.css('display', 'flex');
-})
+}); 
+
+// Play Again button 
+playBtn.on("click", function(){
+   console.log ("you clicked play again!")
+   score=0; 
+   questionIndex=0;
+   secondsLeft= 60;
+   startingPage.css('display', 'flex');
+   // timerEl.css('display', 'none'); 
+   // questionContainer.css('display', 'none'); 
+   // scorePage.css('display', 'none');
+   highPage.css('display', 'none');
+}); 
 
 // Clear High Scores 
-clearBtn
+clearBtn.on("click", function(){
+   console.log("you clicked clear")
+   window.localStorage.clear();
+})
 
 
 //Link to HighScores
 
-// Go back button 
+
 
 
