@@ -9,34 +9,41 @@ var btnC = $("#btnC");
 var btnD = $("#btnD");
 var submitBtn =$("#submitBtn");
 var timer = $("#timer"); 
+var quesHolder =$("#quesHolder");
+var answerBtn=$(".answerBtn");
+var cw= $('#cw');
 
 // Containers/Pages to be hidden or displayed
 var startingPage= $("#startingPage");
 var questionContainer= $("#questionContainer");
 var scorePage= $("#scorePage");
 var highPage =$("#highPage");
+var timerEl= $("#timerContainer")
 
 // Score, Time, Index tracker
 var score=0; 
 var questionIndex=0;
-var answerIndex=0;
 var secondsLeft= 60;
 
+// timer is now not displaying??**
 // At load Start page is shown, everything else hidden
-timer.css('display', 'none'); 
+timerEl.css('display', 'none'); 
 questionContainer.css('display', 'none'); 
 scorePage.css('display', 'none');
 highPage.css('display', 'none');
+cw.css('display', 'none');
 
 // Once your click on the Start button, timer starts, start pages hides, question shows
 startBtn.on("click", function(){
-   timer.css('display','flex');
+   timerEl.css('display','flex');
    questionContainer.css('display', 'flex');
    startingPage.css('display', 'none');
    setTime();
-})
-// Timer function
+   generateQuestion();
+   generateAnswers()
+});
 
+// Timer function
 function setTime(){
    var timerInterval = setInterval(function() {
    secondsLeft --; 
@@ -52,12 +59,17 @@ function setTime(){
 };
 
 // Make Question and Answer Function to propogate on page
-function generateQuestion(index){   
-// connecting to premade element
-   var ques = document.querySelector("#quesHolder");
-   // Add content
-   ques.textContent =questionArray[index].question
+function generateQuestion() {
+   quesHolder.text(questionArray[questionIndex].question);
 }
+
+function generateAnswers(){
+   btnA.text(questionArray[questionIndex].answers[0]);
+   btnB.text(questionArray[questionIndex].answers[1]);
+   btnC.text(questionArray[questionIndex].answers[2]);
+   btnD.text(questionArray[questionIndex].answers[3]);
+}
+
 // Make Question Array
 var questionArray= [
 
@@ -82,24 +94,18 @@ answers: ["A: Bridge pillar", "B: A zebra calf", "C: Zebra barf", "D: Coffee cup
 correct:"Coffee cup sleeve",
 }]
 
-console.log(questionArray); 
 
-// Question Array propagated into page
-for (var i= 0; i<questionArray.length; i++){
-   // var currentQuestion = questionArray[0].question[i];
-   generateQuestion(i);
-}
+// When answer is clicked, Wrong or Correct shows, potentially time deducted & Next Question is propagated
 
-// Score Array
-var score =0;
+// answerBtn.on("click", function(){
+//    questionIndex ++; 
+//    console.log("you clicked an answer!")
+//    if (===)
 
 
-// Questions, your score and high score hidden
-// When start button is clicked, hide start page, show 1st question.
-// When answer is clicked, 
-// Wrong or Correct shows, potentially time deducted
-// Next Question is propagated
-
+//    // If answer is correct add 5 points; and display "correct"; else display wrong & minus secondsleft
+//    cw.css('display', 'flex');
+// })
 
 // Initials are taken and then shown in a list of scores
 // Submit button
