@@ -175,9 +175,6 @@ playBtn.on("click", function(){
    questionIndex=0;
    secondsLeft= 60;
    startingPage.css('display', 'flex');
-   // timerEl.css('display', 'none'); 
-   // questionContainer.css('display', 'none'); 
-   // scorePage.css('display', 'none');
    highPage.css('display', 'none');
 }); 
 
@@ -188,8 +185,13 @@ clearBtn.on("click", function(){
 })
 
 
-//Link to HighScores
+//Link to HighScores-option to hide & show!
+highScoreLink.click(function(){
+   highPage.css('display', 'flex');
+})
 
-
+highScoreLink.dblclick(function(){
+   highPage.css('display', 'none');
+})
 
 
