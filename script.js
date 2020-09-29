@@ -142,9 +142,6 @@ var storedScores = localStorage.getItem('scores');
        storedScores = []
    }
    
-   storedScores.forEach(score => {
-       $("#scoreList").append(`<li> ${score.userInits} -- ${score.userScore}`)
-   })
 
 // Initials are taken and then shown in a list of scores
 submitBtn.on("click", function(event){
@@ -157,6 +154,7 @@ submitBtn.on("click", function(event){
   }; 
 
   storedScores.push(userObj);
+  console.log(storedScores)
 
    localStorage.setItem('scores', JSON.stringify(storedScores))
    
